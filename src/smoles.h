@@ -8,4 +8,11 @@
 #include <BLE2902.h>
 #include <ArduinoJson.h>
 
+class Smoles
+{
+public:
+    void setup();
+    void loop();
+};
+
 #endif

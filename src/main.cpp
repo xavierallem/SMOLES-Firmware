@@ -1,33 +1,35 @@
-#include <Arduino.h>
-#include <ArduinoJson.h>
+#include <smoles.h>
 #include <BluetoothConnection.h>
 
 JsonDocument doc;
 BluetoothConnection bluetoothConnection;
 char txString[500]; // don't know if this size is good
+int val = 0;
 
 void initializeExampleJson()
 {
   doc["timeStamp"] = millis();
   doc["leftFoot"] = true;
 
+  val = analogRead(36);
+  Serial.println(val);
   JsonArray sensorData = doc.createNestedArray("sensorData");
-  sensorData.add(134524525);
-  sensorData.add(1234523452);
-  sensorData.add(323452345);
-  sensorData.add(4345345);
-  sensorData.add(522626);
-  sensorData.add(23462466);
-  sensorData.add(206436347);
-  sensorData.add(8262364);
-  sensorData.add(9262346);
-  sensorData.add(23634610);
-  sensorData.add(13462461);
-  sensorData.add(122363246);
-  sensorData.add(13262346);
-  sensorData.add(1423462346);
-  sensorData.add(1234623465);
-  sensorData.add(126234636);
+  sensorData.add(val);
+  sensorData.add(2.545454222);
+  sensorData.add(3.54545);
+  sensorData.add(4.54545);
+  sensorData.add(1.54511145);
+  sensorData.add(2.545454222);
+  sensorData.add(3.54545);
+  sensorData.add(4.54545);
+  sensorData.add(1.54511145);
+  sensorData.add(2.545454222);
+  sensorData.add(3.54545);
+  sensorData.add(4.54545);
+  sensorData.add(1.54511145);
+  sensorData.add(2.545454222);
+  sensorData.add(3.54545);
+  sensorData.add(val);
 }
 
 void initializeExampleMessage()
@@ -48,6 +50,8 @@ void setup()
 
 void loop()
 {
+  initializeExampleJson();
+  initializeExampleMessage();
   bluetoothConnection.notify(txString);
-  delay(5000);
+  delay(1000);
 }
