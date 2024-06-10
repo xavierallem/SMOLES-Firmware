@@ -5,32 +5,25 @@ JsonDocument doc;
 BluetoothConnection bluetoothConnection;
 char txString[500]; // don't know if this size is good
 int val = 0;
+int analog[15] = {36,39,34,35,32,33,25,26,27,14,12,13,4,2,15};//Actuals Pins for the sensors in esp32
 
 void initializeExampleJson()
 {
   doc["timeStamp"] = millis();
   doc["leftFoot"] = true;
 
-  val = analogRead(36);
-  Serial.println(val);
+ 
   JsonArray sensorData = doc.createNestedArray("sensorData");
-  sensorData.add(val);
-  sensorData.add(2.545454222);
-  sensorData.add(3.54545);
-  sensorData.add(4.54545);
-  sensorData.add(1.54511145);
-  sensorData.add(2.545454222);
-  sensorData.add(3.54545);
-  sensorData.add(4.54545);
-  sensorData.add(1.54511145);
-  sensorData.add(2.545454222);
-  sensorData.add(3.54545);
-  sensorData.add(4.54545);
-  sensorData.add(1.54511145);
-  sensorData.add(2.545454222);
-  sensorData.add(3.54545);
+
+  for(int i = 0;i<15;i++){
+    
+    val = analogRead(analog[i]);
+    
+    sensorData.add(val);
+  }
   sensorData.add(val);
 }
+
 
 void initializeExampleMessage()
 {
