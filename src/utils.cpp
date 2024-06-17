@@ -1,7 +1,7 @@
 #include "utils.h"
 
-StaticJsonDocument<200> JSONUtil::createJsonObject(const char* key, float value) {
-    StaticJsonDocument<200> doc;
+JsonDocument JSONUtil::createJsonObject(const char* key, float value) {
+    JsonDocument doc;
     doc[key] = value;
     return doc;
 }

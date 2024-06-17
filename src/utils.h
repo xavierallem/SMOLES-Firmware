@@ -5,7 +5,7 @@
 
 class JSONUtil {
 public:
-    static StaticJsonDocument<200> createJsonObject(const char* key, float value);
+    static JsonDocument createJsonObject(const char* key, float value);
 };
 
 #endif

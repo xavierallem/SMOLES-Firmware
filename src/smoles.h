@@ -2,17 +2,26 @@
 #define SMOLES_H
 
 #include <Arduino.h>
-#include <BLEDevice.h>
-#include <BLEUtils.h>
-#include <BLEServer.h>
-#include <BLE2902.h>
 #include <ArduinoJson.h>
+
+#include <BluetoothConnection.h>
+#include <Constants.h>
 
 class Smoles
 {
 public:
+    Smoles(bool _use_json_output);
     void setup();
     void loop();
+private:
+    void measure();
+    const std::string get_csv_message();
+    const std::string get_json_message();
+
+    BluetoothConnection bluetooth_connection;
+    std::vector<int> measurement_values;
+    std::array<int, 16> analog_pin_config;
+    bool use_json_output;
 };
 
 #endif

@@ -1,7 +1,13 @@
 #ifndef SMOLES_BLUETOOTH_CONNECTION_H
 #define SMOLES_BLUETOOTH_CONNECTION_H
 
-#include "smoles.h"
+#include <Arduino.h>
+#include <BLEDevice.h>
+#include <BLEUtils.h>
+#include <BLEServer.h>
+#include <BLE2902.h>
+#include <Constants.h>
+#include <Globals.h>
 
 class BluetoothConnection
 {
@@ -11,6 +17,7 @@ class BluetoothConnection
   public:
     void setup();
     void notify(const char *message);
+    void notify(const std::string &_message);
 
 };
 
