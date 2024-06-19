@@ -1,7 +1,7 @@
 #include <smoles.h>
 #include <BluetoothConnection.h>
 
-bool use_json_output = true;
+bool use_json_output = false;
 Smoles smoles_manager(use_json_output);
 
 void setup()

@@ -20,7 +20,10 @@ private:
 
     BluetoothConnection bluetooth_connection;
     std::vector<int> measurement_values;
+    int labeling_value;
+
     std::array<int, 16> analog_pin_config;
+    int labeling_pin_config;
     bool use_json_output;
 };
 
