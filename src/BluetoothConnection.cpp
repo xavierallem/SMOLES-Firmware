@@ -37,7 +37,7 @@ class ServerCallbacks: public BLEServerCallbacks {
 
 void BluetoothConnection::setup()
 {
-  BLEDevice::init("ESP32-BLE-test-server");
+  BLEDevice::init("SMOLEsDevice-0001");
 
   // https://github.com/nkolban/esp32-snippets/issues/945
   BLEDevice::setMTU(517);
