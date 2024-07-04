@@ -77,7 +77,7 @@ const std::string Smoles::get_csv_message()
 const std::string Smoles::get_json_message()
 {
   JsonDocument doc;
-  doc["timeStamp"] = millis();
+  doc["timeStamp"] = TimeUtil::getTime(initialTimestamp+(millis()/1000));
   doc["leftFoot"] = false;
   doc["label"] = labeling_value;
 
