@@ -13,5 +13,5 @@ void setup()
 void loop()
 {
   smoles_manager.loop();
-  delay(50);
+  delay(44);
 }
