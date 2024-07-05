@@ -22,13 +22,6 @@ void Smoles::setup()
 }
 
 void Smoles::loop() {
-  // for (int i = 0; i < 16; i++) {
-  //   mux.setChannel(i);
-  //   int value = analogRead(A0); // Analogue Pin for reading
-  //   StaticJsonDocument<200> doc = JSONUtil::createJsonObject("sensor", value);
-  //   serializeJson(doc, Serial);
-  //   Serial.println();
-  // }
   measure();
 
   if (use_json_output)
