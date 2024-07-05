@@ -5,7 +5,8 @@
 
 CD74HC4067 mux(5, 18, 19, 23 /*, 2*/); // Enabling pin is not connected currently
 
-Smoles::Smoles(bool _use_json_output) : use_json_output(_use_json_output)
+Smoles::Smoles(bool _use_json_output, bool _use_left_foot) : use_json_output(_use_json_output),
+                                                             use_left_foot(_use_left_foot)
 {
   measurement_values = std::vector<int>(16, 0);
   labeling_value = 0;
@@ -57,7 +58,14 @@ void Smoles::measure()
 const std::string Smoles::get_csv_message()
 {
   std::string message;
-  message = std::to_string(millis()) + ",right," + std::to_string(labeling_value);
+  if (use_left_foot)
+  {
+    message = std::to_string(millis()) + ",left," + std::to_string(labeling_value);
+  }
+  else
+  {
+    message = std::to_string(millis()) + ",right," + std::to_string(labeling_value);
+  }
   
   for (int measurement_value : measurement_values)
   {
@@ -71,7 +79,7 @@ const std::string Smoles::get_json_message()
 {
   JsonDocument doc;
   doc["timeStamp"] = TimeUtil::getTime(initialTimestamp+(millis()/1000));
-  doc["leftFoot"] = false;
+  doc["leftFoot"] = use_left_foot;
   doc["label"] = labeling_value;
 
   JsonArray sensorData = doc["sensorData"].to<JsonArray>();

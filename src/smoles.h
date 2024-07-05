@@ -10,7 +10,7 @@
 class Smoles
 {
 public:
-    Smoles(bool _use_json_output);
+    Smoles(bool _use_json_output, bool _use_left_foot);
     void setup();
     void loop();
 private:
@@ -25,6 +25,7 @@ private:
     std::array<int, 16> analog_pin_config;
     int labeling_pin_config;
     bool use_json_output;
+    bool use_left_foot;
 };
 
 #endif

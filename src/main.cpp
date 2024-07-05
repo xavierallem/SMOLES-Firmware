@@ -2,7 +2,8 @@
 #include <BluetoothConnection.h>
 
 bool use_json_output = false;
-Smoles smoles_manager(use_json_output);
+bool use_left_foot = false;
+Smoles smoles_manager(use_json_output, use_left_foot);
 
 void setup()
 {
