@@ -3,7 +3,7 @@
 #include "CD74HC4067.h"
 #include "utils.h"
 
-CD74HC4067 mux(27, 14, 12, 13); // Actual Pins
+CD74HC4067 mux(5, 18, 19, 23 /*, 2*/); // Enabling pin is not connected currently
 
 Smoles::Smoles(bool _use_json_output) : use_json_output(_use_json_output)
 {
@@ -52,7 +52,7 @@ void Smoles::measure()
     // MUX read
     mux.setChannel(i);
     delay(1);
-    measurement_values.at(i) = analogRead(15);
+    measurement_values.at(i) = analogRead(4);
     delay(1);
 
     Serial.print(measurement_values.at(i));
