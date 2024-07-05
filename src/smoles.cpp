@@ -3,7 +3,7 @@
 #include "CD74HC4067.h"
 #include "utils.h"
 
-CD74HC4067 mux(27, 14, 12, 13, 21); // Actual Pins
+CD74HC4067 mux(27, 14, 12, 13); // Actual Pins
 
 Smoles::Smoles(bool _use_json_output) : use_json_output(_use_json_output)
 {
