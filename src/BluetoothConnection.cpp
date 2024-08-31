@@ -1,5 +1,6 @@
 #include <BluetoothConnection.h>
-#include <Constants.h>
+
+bool bluetooth_device_connected;
 
 class CharacteristicCallbacks: public BLECharacteristicCallbacks
 {
@@ -25,20 +26,18 @@ class CharacteristicCallbacks: public BLECharacteristicCallbacks
 class ServerCallbacks: public BLEServerCallbacks {
   void onConnect(BLEServer* pServer)
   {
-    bluetoothDeviceConnected = true;
+    bluetooth_device_connected = true;
   };
  
   void onDisconnect(BLEServer* pServer)
   {
-    bluetoothDeviceConnected = false;
+    bluetooth_device_connected = false;
   }
 };
 
 void BluetoothConnection::setup()
 {
-  // Serial.begin(115200); <-- Probably not necessary here
-
-  BLEDevice::init("ESP32-BLE-test-server");
+  BLEDevice::init("SMOLEsDevice-0001");
 
   // https://github.com/nkolban/esp32-snippets/issues/945
   BLEDevice::setMTU(517);
@@ -67,10 +66,22 @@ void BluetoothConnection::setup()
 
 void BluetoothConnection::notify(const char *message)
 {
-  if (bluetoothDeviceConnected)
+  if (bluetooth_device_connected)
   {
+    // Serial.println(message);
     characteristicTX->setValue(message);
     characteristicTX->notify();
-    Serial.println("message sent");
+    // Serial.println("char* message sent");
+  }
+}
+
+void BluetoothConnection::notify(const std::string &_message)
+{
+  if (bluetooth_device_connected)
+  {
+    // Serial.println(_message.c_str());
+    characteristicTX->setValue(_message);
+    characteristicTX->notify();
+    // Serial.println("string message sent");
   }
 }
